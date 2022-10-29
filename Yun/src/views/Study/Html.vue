@@ -1,3 +1,4 @@
+import { ref } from 'vue';
 <template>
     <Nav />
     <!-- <div id="bg">
@@ -22,7 +23,7 @@
 
     <div class="bg">
         <div class="drag">
-            
+            <v-md-editor v-model="text" height="800px"></v-md-editor>
         </div>
         
     </div>
@@ -35,6 +36,10 @@
 </template>
 
 <script setup lang='ts'>
+
+import { ref } from 'vue';
+
+const text = ref('11111');
 
 </script>
 

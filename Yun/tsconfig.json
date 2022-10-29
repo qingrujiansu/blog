@@ -1,6 +1,7 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  //为了定义声明文件添加types
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue","types"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

@@ -13,6 +13,14 @@ import Personal from "@/components/Personal.vue";
 // import 'element-plus/theme-chalk/dark/css-vars.css';
 // import '@/assets/dark.less'
 
+import VueMarkdownEditor from '@kangc/v-md-editor';
+import '@kangc/v-md-editor/lib/style/base-editor.css';
+import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
+import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
+import Prism from 'prismjs';
+VueMarkdownEditor.use(vuepressTheme, {
+  Prism,
+});
 const app = createApp(App);
 
 //注册icons
@@ -25,6 +33,9 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.component("Nav",Nav).component("Personal",Personal)
 app.use(createPinia());
 app.use(router);
+
+//使用v-md
+app.use(VueMarkdownEditor);
 
 //使用vueuse motion
 app.use(MotionPlugin)
