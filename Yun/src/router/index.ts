@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
+//引入markdown文件
+import markdownTxt from '@/markdown/text.md?raw'
 import home from "@/views/Home.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,6 +24,7 @@ const router = createRouter({
     {
       path:'/html',
       name:'html',
+      props:{markdownTxt:markdownTxt},
       component:()=> import("@/views/Study/Html.vue"),
     },
     {
