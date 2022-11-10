@@ -3,8 +3,11 @@ const Koa = require('koa');
 const koaBody = require('koa-body')
 const router = require('../router')
 const errHandler = require('./errHandler')
+const cors = require('koa2-cors')
 
 const app = new Koa();
+
+app.use(cors())
 app.use(
     koaBody({
     // 支持文件格式

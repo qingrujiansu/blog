@@ -68,6 +68,10 @@
 
 import { ref } from 'vue'
 
+import {useStudyStore} from '@/store/study'
+const useStudy = useStudyStore()
+useStudy.updateName('李四')
+useStudy.findAllFiles()
 const value1 = ref(true)
 const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {

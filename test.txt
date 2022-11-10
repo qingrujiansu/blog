@@ -1,0 +1,7 @@
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://localhost:8000/studies/findAll');
+xhr.send(null);
+xhr.onload = function(e) {
+    var xhr = e.target;
+    console.log(xhr.responseText);
+}
