@@ -1,5 +1,4 @@
 import { createApp } from "vue";
-import { createPinia } from "pinia";
 import { MotionPlugin} from "@vueuse/motion";
 
 
@@ -9,6 +8,7 @@ import "./assets/reset.css";
 import Nav from "@/components/Nav.vue";
 import Personal from "@/components/Personal.vue";
 import store from './store'
+
 //引入切换暗黑模式样式
 // import 'element-plus/theme-chalk/dark/css-vars.css';
 // import '@/assets/dark.less'

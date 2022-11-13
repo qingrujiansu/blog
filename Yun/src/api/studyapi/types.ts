@@ -4,12 +4,7 @@ export interface Datum {
     study_url: string;
 }
 
-export interface Result {
+export interface studyResponseType {
     data: Datum[];
 }
 
-export interface studyResponseType {
-    code: number;
-    message: string;
-    result: Result;
-}

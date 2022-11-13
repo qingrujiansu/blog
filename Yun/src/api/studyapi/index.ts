@@ -1,5 +1,5 @@
 import request from '@/utils/axios';
-import type {studyResponseType} from './types'
+import type { studyResponseType } from './types'
 
 
 export const reqFindAllFiles = () => {

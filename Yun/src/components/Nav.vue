@@ -1,7 +1,7 @@
 <template>
   <div class="h-6" />
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#b7bfcc"
-    text-color="#fff" active-text-color="#334569" >
+    text-color="#fff" active-text-color="#334569">
     <el-menu-item index="1">
       <router-link to="/" class="link">
         个人空间
@@ -9,26 +9,11 @@
     </el-menu-item>
     <el-sub-menu index="2">
       <template #title>学习成果</template>
-      <el-menu-item index="2-1">
-        <router-link to="html">
-          Html
+      <el-menu-item v-for="(item) in Study" :key="item.id" >
+        <router-link :to="'/' + item.study_name">
+          {{ item.study_name }}
         </router-link>
       </el-menu-item>
-      <el-menu-item index="2-2">
-        <router-link to="css">
-          Css
-        </router-link>
-      </el-menu-item>
-      <el-sub-menu index="2-3">
-        <template #title>JavaScript</template>
-        <el-menu-item index="2-4-1">
-          <router-link to="javaScript">
-            基础
-          </router-link>
-        </el-menu-item>
-        <el-menu-item index="2-4-2">Vue</el-menu-item>
-        <el-menu-item index="2-4-3">Nodejs</el-menu-item>
-      </el-sub-menu>
     </el-sub-menu>
     <el-menu-item index="3">
       <router-link to="comment" class="link">
@@ -66,12 +51,47 @@
 
 <script lang="ts" setup>
 
-import { ref } from 'vue'
-
-import {useStudyStore} from '@/store/study'
+import { ref, reactive } from 'vue'
+import { useStudyStore } from '@/store/study'
+import router from '@/router';
+import markdownTxt from '@/markdown/text.md?raw'
+import studyView from '@/views/Study/index.vue'
 const useStudy = useStudyStore()
-useStudy.updateName('李四')
 useStudy.findAllFiles()
+const Study = reactive(useStudy.getterStudy)
+
+
+
+// //循环创建study下面的路由,不用先删除好像每次都是重新创建的，之前的不会留在里面
+Study.forEach((item) => {
+  console.log(item.study_name);
+  router.addRoute({
+    name: item.study_name,
+    path: `/${item.study_name}`,
+    props: { markdownTxt: markdownTxt },
+    component: studyView
+  })
+})
+
+
+
+console.log(router.getRoutes());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const value1 = ref(true)
 const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {

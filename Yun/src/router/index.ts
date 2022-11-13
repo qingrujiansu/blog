@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 //引入markdown文件
 import markdownTxt from '@/markdown/text.md?raw'
 import home from "@/views/Home.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -21,23 +22,25 @@ const router = createRouter({
       name: "comment",
       component: () => import("@/views/Comment.vue"),
     },
-    {
-      path:'/html',
-      name:'html',
-      props:{markdownTxt:markdownTxt},
-      component:()=> import("@/views/Study/Html.vue"),
-    },
-    {
-      path:'/css',
-      name:'css',
-      component:()=> import("@/views/Study/Css.vue"),
-    },
-    {
-      path:'/javascript',
-      name:'javascript',
-      component:()=> import("@/views/Study/JavaScript/JavaScript.vue"),
-    },
-   
+
+    // {
+    //   path:'/study',
+    //   name:'study',
+    //   children:[
+    //       {
+    //         path:'/study/test',
+    //         name:'test',
+    //         props:{markdownTxt:markdownTxt},
+    //         component:()=> import("@/views/Study/index.vue"),
+    //       },  
+    //       {
+    //         path:'/study/h',
+    //         name:'h',
+    //         props:{markdownTxt:markdownTxt},
+    //         component:()=> import("@/views/Study/index.vue"),
+    //       },  
+    //   ],
+    // }
   ],
 });
 
