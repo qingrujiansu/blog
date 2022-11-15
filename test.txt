@@ -1,7 +1,38 @@
-var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://localhost:8000/studies/findAll');
-xhr.send(null);
-xhr.onload = function(e) {
-    var xhr = e.target;
-    console.log(xhr.responseText);
-}
+<el-menu class="el-menu-demo" mode="horizontal" background-color="#b7bfcc" text-color="#fff"
+    active-text-color="#334569" :router="trueValue" @select="handleSelect">
+    <el-menu-item index="/">
+      个人空间
+    </el-menu-item>
+    <el-sub-menu>
+      <template #title>学习笔记</template>
+      <el-menu-item v-for="(item) in Study" :key="item.id" :index="item.study_name">
+        {{ item.study_name }}
+      </el-menu-item>
+    </el-sub-menu>
+    <el-menu-item index="comment">
+      留言
+    </el-menu-item>
+    <el-menu-item index="photo-album">
+      个人相册
+    </el-menu-item>
+    <!-- 切换模式的按钮 -->
+    <!-- <el-switch 
+    v-model="value1" 
+    style="--el-switch-on-color: #afacac; --el-switch-off-color: #331d1d"
+    class="btn"
+    @click="toggleDark()"
+    /> -->
+    <div class="contact">
+      <el-popover placement="right" :width="450" trigger="hover">
+        <template #reference>
+          <el-button style="margin-right: 16px">
+            <el-icon>
+              <UserFilled />
+            </el-icon>联系方式
+          </el-button>
+        </template>
+        <div><img src="@/assets/images/微信.jpg" alt=""></div>
+
+      </el-popover>
+    </div>
+  </el-menu>

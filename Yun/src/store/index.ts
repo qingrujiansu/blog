@@ -1,7 +1,9 @@
-import { createPinia } from 'pinia'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+//模块化pinia
+import { useStudyStore } from './study'
+export default function useStore(){
+    return{
+        useStudy:useStudyStore()
+    }
+}
 
-const store = createPinia()
-store.use(piniaPluginPersistedstate)
-export default store
 
