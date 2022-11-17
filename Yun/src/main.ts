@@ -6,8 +6,8 @@ import "./assets/reset.css";
 import Nav from "@/components/Nav.vue";
 import Personal from "@/components/Personal.vue";
 
-import { createPinia } from 'pinia'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+
+import pinia from "@/store/store"
 //引入切换暗黑模式样式
 // import 'element-plus/theme-chalk/dark/css-vars.css';
 // import '@/assets/dark.less'
@@ -37,8 +37,6 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   }
 
 // 挂载pinia
-const pinia = createPinia();
-pinia.use(piniaPluginPersistedstate);
 app.use(pinia)
 
 //链式注册全局组件(好像不全局注册也能用)

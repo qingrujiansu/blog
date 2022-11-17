@@ -33,26 +33,24 @@ import { ref, reactive } from 'vue'
 import useStore from '@/store'
 import router from '@/router';
 import markdownTxt from '@/markdown/text.md?raw'
-import studyView from '@/views/Study/index.vue'
 import { storeToRefs } from 'pinia';
+//引入hooks
+import useDynamicImport from '@/hooks/useDynamicImport'
 const { useStudy } = useStore()
 useStudy.findAllFiles()
-const {getterStudy ,study_catalogue} = storeToRefs(useStudy)
-// //循环创建study下面的路由,不用先删除好像每次都是重新创建的，之前的不会留在里面
-console.log(study_catalogue.value);
-
-
-getterStudy.value.forEach((item,index) => {
-  let study_url = study_catalogue.value[index].study_url
-  console.log(study_url);
-  
+const { getterStudy} = storeToRefs(useStudy)
+//循环创建study下面的路由,不用先删除好像每次都是重新创建的，之前的不会留在里面
+let studyArrString = await useDynamicImport()
+getterStudy.value.forEach((item, index) => {
   router.addRoute({
     name: item.study_name,
     path: `/${item.study_name}`,
-    props: ()=> import(study_url),
-    component: studyView
+    props: { markdownTxt: studyArrString[index] },
+    // props:{markdownTxt:require('@/markdown/text.md?raw')},
+    component: () => import('@/views/Study/index.vue')
   })
 })
+
 const trueValue = ref(true)
 
 

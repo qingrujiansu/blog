@@ -1,7 +1,8 @@
 import type { Datum } from '@/api/studyapi/types'
 export interface studyGetter {
     id: number,
-    study_name: string
+    study_name: string,
+    study_url:string
 }
 export type StudyState = {
     study_catalogue: Array<Datum>

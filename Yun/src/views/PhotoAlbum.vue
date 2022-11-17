@@ -1,5 +1,12 @@
 <template>
+    <Suspense>
+    <!-- 具有深层异步依赖的组件 -->
     <Nav />
+    <!-- 在 #fallback 插槽中显示 “正在加载中” -->
+    <template #fallback>
+      Loading...
+    </template>
+  </Suspense>
     <div id="bg">
         <div class="box">
             <div class="box1">
