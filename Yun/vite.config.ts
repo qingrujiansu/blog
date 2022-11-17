@@ -7,6 +7,16 @@ import vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // server: {
+  //   proxy: {
+  //     // 选项写法
+  //     '/api': {
+  //       target: 'http://localhost:8000', // 所要代理的目标地址
+  //       rewrite: path => path.replace(/^\/api/, ''), 
+  //     }
+  //   },
+  // },
+  
   plugins: [
     vue(),
     AutoImport({
