@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 //引入markdown文件
-import markdownTxt from '@/markdown/text.md?raw'
 import home from "@/views/Home.vue";
 
 const router = createRouter({
@@ -21,6 +20,11 @@ const router = createRouter({
       path: "/comment",
       name: "comment",
       component: () => import("@/views/Comment.vue"),
+    },
+    {
+      path: "/test",
+      name: "test",
+      component: () => import("@/views/Test1.vue")
     },
 
     // {

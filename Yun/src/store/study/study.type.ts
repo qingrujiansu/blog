@@ -1,14 +1,10 @@
-import type { Datum } from '@/api/studyapi/types'
-export interface studyGetter {
-    id: number,
-    study_name: string,
-    study_url:string
-}
+import type { Datum } from '@/api/studyApi/types'
+
 export type StudyState = {
     study_catalogue: Array<Datum>
 }
 export type StudyGetters = {
-    getterStudy: (state: StudyState) => Array<studyGetter>
+    getterStudy: (state: StudyState) => Array<Datum>
 }
 export type StudyActions = {
     findAllFiles: () => void

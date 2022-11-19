@@ -1,51 +1,34 @@
 <template>
-    <div id="bg">
-    </div>
-    <el-container>
-      <el-header>
-        <Suspense>
-          <Nav />
-          <template #fallback>
-            Loading...
-          </template>
-        </Suspense>
-      </el-header>
-      <el-container>
-        <el-aside width="200px">
-          <Personal />
-        </el-aside>
-        <el-main>
-          <el-row class="row-bg" justify="end">
-            <el-col v-for="(item, index) in getterImage" :key="item.id" :span="6" :offset="index > 0 ? 2 : 0">
-              <el-card :body-style="{ padding: '0px' }">
-                <img :src="item.image_url" class="image" />
-                <div style="padding: 14px" v-if="item.image_description">
-                  <span>{{item.image_description}}</span>
-                </div>
-              </el-card>
-            </el-col>
-          </el-row>
 
-        </el-main>
-      </el-container>
+  <div id="bg">
+  </div>
+  <el-container>
+    <el-header>
+      <Suspense>
+        <Nav />
+        <template #fallback>
+          Loading...
+        </template>
+      </Suspense>
+    </el-header>
+    <el-container>
+      <el-aside width="200px">
+        <Personal />
+      </el-aside>
+      <el-main>
+       
+      </el-main>
     </el-container>
+  </el-container>
+
 </template>
-  
+
 <script setup lang='ts'>
 import { ref } from 'vue'
-import useStore from '@/store'
-import { flatMap } from 'lodash';
-
-const { useImages } = useStore()
-useImages.findAllImages()
-const { getterImage } = useImages
-console.log(getterImage);
-
-
 
 const currentDate = ref(new Date())
 </script>
-  
+
 <style lang='less' scoped>
 //背景图片固定不变
 #bg {
@@ -115,11 +98,9 @@ const currentDate = ref(new Date())
 .el-row {
   margin-bottom: 20px;
 }
-
 .el-row:last-child {
   margin-bottom: 0;
 }
-
 .el-col {
   border-radius: 4px;
 }

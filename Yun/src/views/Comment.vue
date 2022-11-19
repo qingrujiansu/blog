@@ -1,18 +1,20 @@
 <template>
-    <Suspense>
-    <!-- 具有深层异步依赖的组件 -->
-    <Nav />
-    <!-- 在 #fallback 插槽中显示 “正在加载中” -->
-    <template #fallback>
-      Loading...
-    </template>
-  </Suspense>
     <div id="bg">
-        <div class="box">
-            <div class="box1">
+    </div>
+    <el-container>
+        <el-header>
+            <Suspense>
+                <Nav />
+                <template #fallback>
+                    Loading...
+                </template>
+            </Suspense>
+        </el-header>
+        <el-container>
+            <el-aside width="200px">
                 <Personal />
-            </div>
-            <div class="box2">
+            </el-aside>
+            <el-main>
                 <div class="ui minimal comments">
                     <h3 class="ui dividing header">留言区域</h3>
                     <div class="comment">
@@ -88,10 +90,9 @@
                         </div>
                     </form>
                 </div>
-            </div>
-        </div>
-    </div>
-
+            </el-main>
+        </el-container>
+    </el-container>
 
 </template>
 
@@ -101,20 +102,39 @@
 
 <style lang='less' scoped>
 #bg {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-image: url(@/assets/images/bachongshenzi.jpg);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size:cover;
-    float: left;
-}
-.box {
-    display: flex;
+  position: fixed;
+  // position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url(@/assets/images/bachongshenzi.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.box2 {
-    flex: 1;
+
+.el-header {
+    --el-header-padding: 0, 0;
+    padding: var(--el-header-padding);
+    position: relative;
+    width: 100%;
+    height: 60px;
+}
+
+.el-aside {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 60px;
+    bottom: 0;
+}
+
+.el-main {
+    position: absolute;
+    left: 200px;
+    right: 0;
+    top: 60px;
+    bottom: 0;
+    overflow-y: scroll;
 }
 </style>

@@ -13,14 +13,22 @@
 //     return await import('../../../blog_server/src/app/static/test.md?raw')
 
 // } 
-export default async function useDynamicImport() {
+export async function useDynamicImportMarkdown() {
     const studyArrString: Array<string> = []
     const modules = import.meta.glob('../../../blog_server/src/app/static/*.md', { as: 'raw' });
     for (const path in modules) {
         await modules[path]().then((mod) => {
             studyArrString.push(mod)
         })
-    }    
+    }
     return studyArrString
+}
+export async function useDynamicImportImage() {
+    const modules = import.meta.glob(['../../../blog_server/src/app/static/*', '!**/*.md'])
+    for (const path in modules) {
+        modules[path]().then((mod) => {
+            console.log(mod.default)
+        })
+    }
 
 } 
