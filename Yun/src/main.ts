@@ -5,9 +5,12 @@ import router from "./router";
 import "./assets/reset.css";
 import Nav from "@/components/Nav.vue";
 import Personal from "@/components/Personal.vue";
-
-
 import pinia from "@/store/store"
+//引入的element全局样式，否则消息提示框都不生效
+import 'element-plus/theme-chalk/src/index.scss'
+
+
+
 //引入切换暗黑模式样式
 // import 'element-plus/theme-chalk/dark/css-vars.css';
 // import '@/assets/dark.less'
@@ -17,11 +20,6 @@ import pinia from "@/store/store"
 // import '@kangc/v-md-editor/lib/style/base-editor.css';
 // import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 // VMdPreview.use(vuepressTheme);
-
-// import VMdPreviewHtml from '@kangc/v-md-editor/lib/preview-html';
-// import '@kangc/v-md-editor/lib/style/preview-html.css';
-// // 引入使用主题的样式
-// import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 
 import VMdPreview from '@kangc/v-md-editor/lib/preview';
 import '@kangc/v-md-editor/lib/style/preview.css';
@@ -46,7 +44,7 @@ app.use(router);
 
 //使用markdown
 
-// highlightjs
+// highlight js
 import hljs from 'highlight.js';
 
 VMdPreview.use(githubTheme, {

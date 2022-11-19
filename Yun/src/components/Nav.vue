@@ -23,7 +23,6 @@
               </el-button>
             </template>
             <div><img src="@/assets/images/微信.jpg" alt=""></div>
-
           </el-popover>
         </div>
       </el-menu>
@@ -42,7 +41,7 @@ import {useDynamicImportMarkdown} from '@/hooks/useDynamicImport'
 const { useStudy } = useStore()
 useStudy.findAllFiles()
 const { getterStudy } = storeToRefs(useStudy)
-//循环创建study下面的路由,不用先删除好像每次都是重新创建的，之前的不会留在里面
+//循环创建study下面的路由,不用先删除好像每次都是重新创建的，之前的不会留在里面，使用异步组件
 let studyArrString = await useDynamicImportMarkdown()
 getterStudy.value.forEach((item, index) => {
   router.addRoute({

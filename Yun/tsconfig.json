@@ -7,7 +7,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    //Volar的elelment plus提示
+    //Volar的element plus提示
     "types": ["element-plus/global"],
   },
 
