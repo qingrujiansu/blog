@@ -17,75 +17,37 @@
             <el-main>
                 <div class="ui minimal comments">
                     <h3 class="ui dividing header">留言区域</h3>
-                    <div class="comment">
+                    <!-- 一条评论 -->
+                    <div class="comment" v-for="(item) in comment_catalogue" :key="item.id">
                         <a class="avatar">
                             <img src="@/assets/images/head_portrait.jpg">
                         </a>
                         <div class="content">
-                            <a class="author">Matt</a>
+                            <div class="author">{{ '游客' + item.user_id }}</div>
                             <div class="metadata">
-                                <span class="date">今天下午 5:42</span>
-                            </div>
-                            <div class="text">太赞了！ </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <a class="avatar">
-                            <img src="@/assets/images/head_portrait.jpg">
-                        </a>
-                        <div class="content">
-                            <a class="author">Elliot Fu</a>
-                            <div class="metadata">
-                                <span class="date">昨天上午12:30</span>
+                                <span class="date">{{ item.createdAt }}</span>
                             </div>
                             <div class="text">
-                                <p>這對我的研究是非常有用.謝謝!</p>
-                            </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
+                                <p>{{ item.txtContent }}</p>
                             </div>
                         </div>
-                        <div class="comments">
+                        <div class="comments" v-if="item.authorContent">
                             <div class="comment">
                                 <a class="avatar">
-                                    <img src="@/assets/images/leishen.jpg">
+                                    <img src="@/assets/images/author.jpg">
                                 </a>
                                 <div class="content">
-                                    <a class="author">Jenny Hess</a>
-                                    <div class="metadata">
-                                        <span class="date">刚刚</span>
-                                    </div>
-                                    <div class="text">艾略特你永远是多么正确 :) </div>
-                                    <div class="actions">
-                                        <a class="reply">Reply</a>
-                                    </div>
+                                    <div class="author">清如笺素</div>
+                                    <div class="text">{{ item.authorContent }} </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <a class="avatar">
-                            <img src="@/assets/images/head_portrait.jpg">
-                        </a>
-                        <div class="content">
-                            <a class="author">Joe Henderson</a>
-                            <div class="metadata">
-                                <span class="date">5 天以前</span>
-                            </div>
-                            <div class="text">老兄，这太棒了。非常感谢。 </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
                             </div>
                         </div>
                     </div>
                     <form class="ui reply form">
                         <div class="field">
-                            <textarea></textarea>
+                            <textarea v-model="textValue"></textarea>
                         </div>
-                        <div class="ui blue labeled submit icon button">
+                        <div class="ui blue labeled submit icon button" @click="AddComment">
                             <i class="icon edit"></i> Add Reply
                         </div>
                     </form>
@@ -98,18 +60,64 @@
 
 <script setup lang='ts'>
 
+import { v4 as uuidv4 } from 'uuid'
+import { onMounted, ref } from 'vue';
+import useStore from '@/store'
+import { ElMessage  } from 'element-plus'
+
+
+const { useComments } = useStore()
+//生成uuid
+onMounted(() => {
+    let uid = ''
+    if (localStorage.getItem('uid')) {
+        uid = localStorage.getItem('uid')!
+    } else {
+        uid = uuidv4()
+        localStorage.setItem('uid', uid)
+    }
+    useComments.uid = uid
+})
+useComments.findAllComments();
+const { comment_catalogue } = useComments
+const textValue = ref<string>('')
+//添加留言
+async function AddComment() {
+    try {
+        if(!textValue.value){
+            throw new Error('请输入内容')
+        }
+        const res = await useComments.uploadComment(textValue.value)
+        textValue.value = ''
+        ElMessage({
+            message:'留言成功,请刷新网页',
+            type:'success'
+        })
+    } catch (error) {
+        ElMessage({
+            message:'留言失败',
+            type:'error'
+        })
+        
+    }
+}
+
+
+
+
+
 </script>
 
 <style lang='less' scoped>
 #bg {
-  position: fixed;
-  // position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url(@/assets/images/bachongshenzi.jpg);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
+    position: fixed;
+    // position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(@/assets/images/bachongshenzi.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 

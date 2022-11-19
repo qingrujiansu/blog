@@ -37,7 +37,6 @@
     justify-content: space-between;
     // background-color: pink;
     // box-shadow: 1px 5px 10px gray;
-
     .info {
         flex-grow: 1;
         // background-color: aqua;
