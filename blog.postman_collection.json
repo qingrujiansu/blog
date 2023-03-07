@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "2bec84c5-afcb-45c5-bcb6-92f6b1668db8",
+		"name": "blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21257997"
+	},
+	"item": [
+		{
+			"name": "学习模块",
+			"item": [
+				{
+					"name": "查询所有文件",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/studies/findAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"studies",
+								"findAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "上传文件",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"type": "file",
+									"src": "/D:/all_resource/vue3学习笔记/个人博客搭建.md"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/studies/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"studies",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询文件",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/studies/find?kind=JavaScript自己理解.md",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"studies",
+								"find"
+							],
+							"query": [
+								{
+									"key": "kind",
+									"value": "JavaScript自己理解.md"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除文件",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/studies/delete?kind=JavaScript自己理解.md",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"studies",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "kind",
+									"value": "JavaScript自己理解.md"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "图片模块",
+			"item": [
+				{
+					"name": "上传图片",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"type": "file",
+									"src": "/D:/all_resource/图片/6.jpg"
+								},
+								{
+									"key": "description",
+									"value": "我是6",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/images/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"images",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除图片",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8000/images/delete?kind=1.jpg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"images",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "kind",
+									"value": "1.jpg"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询图片",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/images/find?kind=6.jpg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"images",
+								"find"
+							],
+							"query": [
+								{
+									"key": "kind",
+									"value": "6.jpg"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询所有图片",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/images/findAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"images",
+								"findAll"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "评论模块",
+			"item": [
+				{
+					"name": "上传留言",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\":\"db0e7ff9-64ee-498f-9e3d-5c8ee62cc3ff\",\r\n    \"txtContent\":\"文本已经修改好了111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/comments/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"comments",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询所有留言",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/comments/findAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"comments",
+								"findAll"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

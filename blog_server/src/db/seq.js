@@ -13,7 +13,7 @@ const seq = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PWD, {
     timezone: '+08:00'
 })
 
-// 测试数据库是否连接
+//测试数据库是否连接
 // try {
 //     seq.authenticate();
 //     console.log('成功.');

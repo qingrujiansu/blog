@@ -32,11 +32,14 @@
 </template>
   
 <script setup lang='ts'>
-import { ref } from 'vue';
+import { ref,onMounted} from 'vue';
 import useStore from '@/store'
 
 const { useImages } = useStore()
-useImages.findAllImages()
+onMounted(()=>{
+  useImages.findAllImages()
+})
+
 const { getterImage } = useImages
 console.log(getterImage);
 
